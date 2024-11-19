@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script defer src="/js/scripts.js"></script>
+    <title>Habit Tracker</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Habit Tracker</h1>
+      <!-- Add habit form -->
+      <form action="/habits" method="POST">
+        <input type="text" name="name" placeholder="Add a new habit" required />
+        <button type="submit">Add</button>
+      </form>
+
+      <!-- Habit list section -->
+      <div class="habits-list">
+        <% habits.forEach(habit => { %>
+        <div class="habit <%= habit.isPinned ? 'pinned' : '' %>">
+          <h3><%= habit.name %></h3>
+          <p>Track your progress each day!</p>
+
+          <!-- Days buttons -->
+          <div class="days">
+            <% const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday', 'Sunday']; for (let i = 0; i < 7; i++) { %>
+            <form
+              action="/habits/<%= habit._id %>?_method=PUT"
+              method="POST"
+              class="day-form"
+            >
+              <input type="hidden" name="action" value="toggleDay" />
+              <input type="hidden" name="dayIndex" value="<%= i %>" />
+              <button
+                type="submit"
+                class="<%= habit.days[i] ? 'completed' : '' %>"
+              >
+                <%= daysOfWeek[i] %>
+              </button>
+            </form>
+            <% } %>
+          </div>
+
+          <!-- Pin button -->
+          <form action="/habits/<%= habit._id %>?_method=PUT" method="POST">
+            <input type="hidden" name="action" value="togglePin" />
+            <button type="submit">
+              <%= habit.isPinned ? 'Unpin' : 'Pin' %>
+            </button>
+          </form>
+
+          <!-- Like button -->
+          <form action="/habits/<%= habit._id %>?_method=PUT" method="POST">
+            <input type="hidden" name="action" value="like" />
+            <button type="submit">❤️ <%= habit.likes %></button>
+          </form>
+
+          <!-- Delete button -->
+          <form action="/habits/<%= habit._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="delete">Delete</button>
+          </form>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<%- include('layout') %>
+<div class="container">
+  <h1>Habit Tracker</h1>
+  <form action="/habits" method="POST">
+    <input type="text" name="name" placeholder="Add a new habit" required />
+    <button type="submit">Add</button>
+  </form>
+  <div class="habits-list">
+    <% habits.forEach(habit => { %>
+    <div class="habit <%= habit.isPinned ? 'pinned' : '' %>">
+      <h3><%= habit.name %></h3>
+      <div class="days">
+        <% for (let i = 0; i < 7; i++) { %>
+        <form
+          action="/habits/<%= habit._id %>?_method=PUT"
+          method="POST"
+          class="day-form"
+        >
+          <input type="hidden" name="action" value="toggleDay" />
+          <input type="hidden" name="dayIndex" value="<%= i %>" />
+          <button type="submit" class="<%= habit.days[i] ? 'completed' : '' %>">
+            Mon
+          </button>
+        </form>
+        <% } %>
+      </div>
+      <form action="/habits/<%= habit._id %>?_method=PUT" method="POST">
+        <input type="hidden" name="action" value="togglePin" />
+        <button type="submit"><%= habit.isPinned ? 'Unpin' : 'Pin' %></button>
+      </form>
+      <form action="/habits/<%= habit._id %>?_method=PUT" method="POST">
+        <input type="hidden" name="action" value="like" />
+        <button type="submit">❤️ <%= habit.likes %></button>
+      </form>
+      <form action="/habits/<%= habit._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+    <% }) %>
+  </div>
+</div>
