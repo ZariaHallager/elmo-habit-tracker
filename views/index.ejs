@@ -19,7 +19,8 @@
           <input type="hidden" name="action" value="toggleDay" />
           <input type="hidden" name="dayIndex" value="<%= i %>" />
           <button type="submit" class="<%= habit.days[i] ? 'completed' : '' %>">
-            Mon
+            <% const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+            'Sun']; %> <%= daysOfWeek[i] %>
           </button>
         </form>
         <% } %>

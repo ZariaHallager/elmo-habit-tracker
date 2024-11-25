@@ -1,26 +1,157 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f0f8ff;
-  color: #333;
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.container {
-  width: 50%;
-  margin: 0 auto;
+
+/* Body and overall layout */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
   padding: 20px;
 }
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #4caf50;
+}
+
+/* Form */
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 75%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Habit list */
 .habits-list {
-  margin-top: 20px;
+  margin-top: 30px;
 }
+
 .habit {
-  border: 1px solid #ccc;
+  background-color: #ffffff;
   padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.habit p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.habit h3 {
+  font-size: 1.5rem;
+  color: #4caf50;
   margin-bottom: 10px;
-  background: #fff;
 }
-.habit.pinned {
-  border-color: gold;
+
+.days {
+  margin-bottom: 10px;
 }
-.completed {
-  text-decoration: line-through;
-  background-color: lightgreen;
+
+button.completed {
+  background-color: #4caf50;
+}
+
+button.completed:hover {
+  background-color: #45a049;
+}
+
+button:not(.completed) {
+  background-color: #ccc;
+}
+
+button:not(.completed):hover {
+  background-color: #bbb;
+}
+
+/* Pin button */
+button:focus {
+  outline: none;
+}
+
+button[type="submit"] {
+  margin-right: 10px;
+}
+
+/* Styling for the pinned habit */
+.pinned {
+  border-left: 5px solid #4caf50;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Button container for delete and pin actions */
+form button {
+  background-color: #ff5722;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+}
+
+form button:hover {
+  background-color: #e64a19;
+}
+
+form button:active {
+  background-color: #d84315;
+}
+
+/* Additional styling for the like button */
+form button[type="submit"]:nth-of-type(2) {
+  background-color: #f44336;
+}
+
+form button[type="submit"]:nth-of-type(2):hover {
+  background-color: #e53935;
+}
+
+form button[type="submit"]:nth-of-type(2):active {
+  background-color: #d32f2f;
 }
