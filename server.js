@@ -23,6 +23,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 
+
 // Routes
 const habitRoutes = require('./routes/habits');
 app.use('/habits', habitRoutes);
